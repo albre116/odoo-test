@@ -3,11 +3,12 @@
 # You create one per each odoo version or one per each project / module
 docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
-DB_CONTAINER=db-odoo-10
+export DB_CONTAINER=db-odoo-10
 docker run -p 5432:5432 -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo --name $DB_CONTAINER postgres:9.5
+sleep 5s #give the pg time to boot up
 
-ODOO_CONTAINER=EzAce
-ODOO_BRANCH=10.0
+export ODOO_CONTAINER=EzAce
+export ODOO_BRANCH=10.0
 
 ################### /etc/hosts
 # /etc/hosts must contains domains you use, e.g:
