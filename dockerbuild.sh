@@ -6,7 +6,7 @@ docker rm $(docker ps -a -q)
 DB_CONTAINER=db-odoo-10
 docker run -p 5432:5432 -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo --name $DB_CONTAINER postgres:9.5
 
-ODOO_CONTAINER=farebeast
+ODOO_CONTAINER=EzAce
 ODOO_BRANCH=10.0
 
 ################### /etc/hosts
@@ -28,10 +28,10 @@ docker run \
 -t itprojectsllc/install-odoo:$ODOO_BRANCH -- -d misc --db-filter ^%d$
 
 # Update all repos
-docker exec -t $ODOO_CONTAINER /bin/bash -c "export GIT_PULL=yes; bash /install-odoo-saas.sh"
+# docker exec -t $ODOO_CONTAINER /bin/bash -c "export GIT_PULL=yes; bash /install-odoo-saas.sh"
 
 # Update odoo only
 docker exec -t $ODOO_CONTAINER git -C /mnt/odoo-source/ pull
 
 # Update misc-addons only
-docker exec -t $ODOO_CONTAINER git -C /mnt/addons/it-projects-llc/misc-addons pull
+# docker exec -t $ODOO_CONTAINER git -C /mnt/addons/it-projects-llc/misc-addons pull
