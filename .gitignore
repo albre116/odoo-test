@@ -101,4 +101,4 @@ ENV/
 .mypy_cache/
 
 # odoo source files
-odoo-*
+/odoo-10.0

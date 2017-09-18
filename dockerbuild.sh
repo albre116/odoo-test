@@ -5,6 +5,7 @@ docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
 export DB_CONTAINER=db-odoo-10
 docker run -p 5432:5432 -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo --name $DB_CONTAINER postgres:9.5
+echo "waiting 5 seconds for sleep"
 sleep 5s #give the pg time to boot up
 
 export ODOO_CONTAINER=EzAce
@@ -23,7 +24,7 @@ docker run \
 -p 8069:8069 \
 -p 8072:8072 \
 -e ODOO_MASTER_PASS=admin \
--v ${pwd}/misc-addons/:/mnt/addons/it-projects-llc/misc-addons/ \
+-v $(pwd)/misc-addons/:/mnt/addons/it-projects-llc/misc-addons/ \
 --name $ODOO_CONTAINER \
 --link $DB_CONTAINER:db \
 -t itprojectsllc/install-odoo:$ODOO_BRANCH -- -d misc --db-filter ^%d$
