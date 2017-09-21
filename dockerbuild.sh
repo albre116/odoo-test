@@ -24,7 +24,7 @@ docker run \
 -p 8069:8069 \
 -p 8072:8072 \
 -e ODOO_MASTER_PASS=admin \
--v $(pwd)/misc-addons/:/mnt/addons/it-projects-llc/misc-addons/ \
+-v $(pwd)/customModules/:/mnt/addons/it-projects-llc/misc-addons/ \
 --name $ODOO_CONTAINER \
 --link $DB_CONTAINER:db \
 -t itprojectsllc/install-odoo:$ODOO_BRANCH -- -d misc --db-filter ^%d$
